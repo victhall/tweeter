@@ -63,11 +63,59 @@ const createTweetElement = function (tweeterData) {
   return newTweet
 };
 
-const renderTweets = function(tweets) {
-  for(let element of tweets) {
+const renderTweets = function (tweets) {
+  for (let element of tweets) {
     const postTweets = createTweetElement(element);
-  $('.tweet.container').prepend(postTweets);
+    $('.tweet.container').prepend(postTweets);
   }
 };
 
-renderTweets(data);
+
+
+$(document).ready(function () {
+
+  $('.tweet-form').on('submit', function(e) {
+    e.preventDefault();
+
+const tweetBox = $(this).children('#tweet-text');
+const tweetBoxVal = tweetBox.val();
+
+
+
+
+
+
+$.ajax({
+  url: '/tweets',
+  method: 'POST',
+  data: { text: tweetBoxVal }
+})
+.done(function(results) {
+  loadedTweets();
+})
+.fail(function(error) {
+  console.log(error)
+})
+.always(function() {
+  console.log('Request to server done')
+})
+
+  });
+const loadedTweets = function() {
+  $.ajax({
+    url: '/tweets',
+    method: 'GET',
+  })
+  .done(function(results) {
+    renderTweets(results);
+  })
+  .fail(function(error) {
+    console.log(error)
+  })
+  .always(function() {
+    console.log('Request to server done')
+  })
+
+}
+
+});
