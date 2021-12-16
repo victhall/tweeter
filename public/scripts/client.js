@@ -61,4 +61,13 @@ const createTweetElement = function (tweeterData) {
 
   let newTweet = $tweet.append(tweetFormat);
   return newTweet
-}
+};
+
+const renderTweets = function(tweets) {
+  for(let element of tweets) {
+    const postTweets = createTweetElement(element);
+  $('.tweet.container').prepend(postTweets);
+  }
+};
+
+renderTweets(data);
