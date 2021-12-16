@@ -1,29 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Meta Information -->
-    <title>Tweeter - Home Page</title>
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
+<head>
+  <!-- Meta Information -->
+  <title>Tweeter - Home Page</title>
 
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
 
-    <!-- External JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- External Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
 
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
-  </head>
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <body>
-    <!-- Top nav bar (fixed) -->
-    <nav>
-      <span>tweeter</span>
-    </nav>
+  <!--Nav CSS -->
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
-    <!-- Page-specific (main) content here -->
-    <main class="container"></main>
-  </body>
+  <!-- Header CSS -->
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
+  <!-- New Tweet CSS -->
+  <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+
+  <!-- Posted Tweet CSS -->
+  <link rel="stylesheet" href="styles/posted-tweet.css" type="text/css" />
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!--Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/client.js"></script>
+</head>
+
+<body>
+  <!-- Top nav bar (fixed) -->
+  <nav id="navbar">
+    <span id='logo'>tweeter</span>
+    <span id='nav-container'>
+      <div><strong>Write</strong> a new tweet</div>
+      <i class="fas fa-angle-double-down"></i>
+    </span>
+  </nav>
+
+  <header class="homepage-header">
+    <div id="profile-avatar">
+      <img src="/images/profile-hex.png">
+    </div>
+    <br>
+    <div>
+      <h2 id="profile-name">Your Name</h2>
+    </div>
+  </header>
+
+  <!-- Page-specific (main) content here -->
+  <main class="container">
+
+    <section class="new-tweet">
+      <h2>Compose Tweet</h2>
+      <form action="/tweets/" method="POST" class="tweet-form">
+        <input name="text" id="tweet-text" placeholder="What are you humming about?"></input>
+        <div>
+          <div class="submit-counter">
+            <button class="tweet-btn" type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </div>
+      </form>
+    </section>
+    <article>
+
+      <header class="tweet-header">
+        <div class="img-name">
+          <img src="/images/girl.png" alt="" class="user-img">
+          <span>Victoria</span>
+        </div>
+        <span class="username">@Fishsoup69</span>
+      </header>
+      <div class="tweet-body">
+        <span class="tweet-p">Just setting up my tweeter</span>
+      </div>
+      <footer class="tweet-footer">
+        <time datetime="2021-12-12T17:50:21.000Z">10 days ago</time>
+        <span class="icons">
+        <i class="fas fa-flag"></i>
+        <i class="fas fa-retweet"></i>
+        <i class="fas fa-heart"></i>
+      </span>
+      </footer>
+    </article>
+
+  </main>
+  <script src="./scripts/composer-char-counter.js"></script>
+</body>
+
 </html>

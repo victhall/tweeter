@@ -1,0 +1,19 @@
+.homepage-header {
+  height: 550px;
+  width: 100%;
+  background-color: #FFD662FF;
+  background-image: url("../images/cartographer.png");
+padding-top: 150px;
+}
+
+#profile-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-name {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}

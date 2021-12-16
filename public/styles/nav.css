@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+height: 120px;
+background-color: #4056A1;
+color: #FFFFFF;
+width: 100%;
+padding: 0em 1.5em;
+position: fixed;
+top: 0;
+width: 100;
+}
+
+#logo {
+font-family: 'Bungee', sans-serif;
+font-size: 35px;
+}
+
+#nav-container {
+font-size: 25px;
+display: flex;
+flex-direction: column;
+}
+
+.fa-angle-double-down {
+  display: flex;
+  align-self: center;
+  color: #FF3333;
+  font-size: .8em;
+  }
+
+  
