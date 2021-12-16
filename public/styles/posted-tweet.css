@@ -1,4 +1,4 @@
-article {
+.tweets {
 border: 5px solid #545149;
 padding: 20px 30px;
 margin-bottom: 40px;
@@ -6,9 +6,20 @@ margin-top: 40px;
 width: 70vw;
 }
 
+.tweets:hover {
+  box-shadow: 7px 7px 0px 0px #c7cee4;
+
+}
 article:hover {
   box-shadow: 7px 7px 0px 0px #c7cee4;
 
+}
+article{
+  border: 5px solid #545149;
+padding: 20px 30px;
+margin-bottom: 40px;
+margin-top: 40px;
+width: 70vw;
 }
 
 .tweet-header {
@@ -45,16 +56,23 @@ footer {
 }
 
 .username {
+  display: flex;
+  align-items: center;
   font-weight: 600;
   color: #c7cee4;
 }
-
+.img-name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .user-img {
+  display: flex;
+  align-items: center;
   width: 10%;
   height: auto;
   padding-right: 10px;
-  position: relative;
-  top: 10px;
+  
   height: 40px;
   width: auto;
 }
@@ -81,3 +99,29 @@ color: #49569b;
   padding: 5px;
   border: 0.5px solid red;
 }
+
+.container {
+  margin-top: 150px;
+}
+
+@media (min-width: 768px){
+
+  .container {
+  width: 50%;
+  margin: 150px 10px 0px 50px;
+  }
+
+  .tweet-container {
+    width: 90%;
+  }
+  .tweets{
+    width: 90%;
+  }
+  .tweet{
+    width: 90%;
+  }
+.tweet-form{
+  width: 90%;
+}
+
+ } 

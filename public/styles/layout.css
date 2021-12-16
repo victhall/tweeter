@@ -32,3 +32,12 @@ main {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ @media (min-width: 768px){
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+ } 

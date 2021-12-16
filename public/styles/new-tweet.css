@@ -32,3 +32,13 @@ padding: 5px 10px;
   justify-content: space-between;
   padding-top: 30px;
 }
+
+@media (min-width: 768px){
+
+  #tweet-text {
+  width: 90%;
+  }
+  .submit-counter{
+    width: 90%;
+  }
+ } 

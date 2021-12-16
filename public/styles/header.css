@@ -17,3 +17,12 @@ padding-top: 150px;
   justify-content: center;
   align-items: center; 
 }
+
+@media (min-width: 768px){
+.homepage-header{
+  width: 30%;
+  height: 450px;
+ padding: 50px;
+  margin: 150px 50px;
+}
+ }

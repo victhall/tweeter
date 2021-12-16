@@ -5,6 +5,10 @@
   <!-- Meta Information -->
   <title>Tweeter - Home Page</title>
 
+<!-- Viewport -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <!-- External CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     type="text/css" />
@@ -60,17 +64,16 @@
     <div id="profile-avatar">
       <img src="/images/profile-hex.png">
     </div>
-    <br>
     <div>
-      <h2 id="profile-name">Your Name</h2>
+      <h2 id="profile-name">Victoria</h2>
     </div>
   </header>
 
   <!-- Page-specific (main) content here -->
   <main class="container">
 
+
     <section class="new-tweet">
-      <h2>Compose Tweet</h2>
       <form class="tweet-form">
         <input name="text" id="tweet-text" placeholder="What are you humming about?"></input>
         <div>
@@ -91,12 +94,12 @@
     </section>
 
     <section class="tweet-container">
-      <article>
+      <article class="tweets">
 
         <header class="tweet-header">
           <div class="img-name">
             <img src="/images/girl.png" alt="" class="user-img">
-            <span>Victoria</span>
+            <span class='name'>Victoria</span>
           </div>
           <span class="username">@Fishsoup69</span>
         </header>
