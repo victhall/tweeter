@@ -4,38 +4,18 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
+const data = [];
 
-
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
 const createTweetElement = function (tweeterData) {
   const $tweet = $('<article>').addClass('tweet');
   let name = tweeterData.user.name;
-  let avatar = tweeterData.user.avatar;
+  let avatar = tweeterData.user.avatars;
   let handle = tweeterData.user.handle;
   let content = tweeterData.content.text;
   let time = timeago.format(tweeterData.created_at);
@@ -48,7 +28,7 @@ const createTweetElement = function (tweeterData) {
 <span class="username">${handle}</span>
 </header>
 <div class="tweet-body">
-<span class="tweet-p">${content}</span>
+<span class="tweet-p">${escape(content)}</span>
 </div>
 <footer class="tweet-footer">
 <time datetime="2021-12-12T17:50:21.000Z">${time}</time>
@@ -60,62 +40,57 @@ const createTweetElement = function (tweeterData) {
 </footer>`
 
   let newTweet = $tweet.append(tweetFormat);
-  return newTweet
+  return newTweet;
 };
 
 const renderTweets = function (tweets) {
   for (let element of tweets) {
     const postTweets = createTweetElement(element);
-    $('.tweet.container').prepend(postTweets);
+    $('.tweet-container').prepend(postTweets);
   }
 };
 
 
-
-$(document).ready(function () {
-
-  $('.tweet-form').on('submit', function(e) {
-    e.preventDefault();
-
-const tweetBox = $(this).children('#tweet-text');
-const tweetBoxVal = tweetBox.val();
-
-
-
-
-
-
-$.ajax({
-  url: '/tweets',
-  method: 'POST',
-  data: { text: tweetBoxVal }
-})
-.done(function(results) {
-  loadedTweets();
-})
-.fail(function(error) {
-  console.log(error)
-})
-.always(function() {
-  console.log('Request to server done')
-})
-
-  });
-const loadedTweets = function() {
-  $.ajax({
-    url: '/tweets',
-    method: 'GET',
-  })
-  .done(function(results) {
-    renderTweets(results);
-  })
-  .fail(function(error) {
-    console.log(error)
-  })
-  .always(function() {
-    console.log('Request to server done')
-  })
-
+function loadedTweets() {
+  $.ajax("/tweets", { method: 'GET' })
+    .then(arrayOfTweets => {
+      renderTweets(arrayOfTweets)
+    })
 }
 
+
+
+$(document).ready(function () {
+  $('.error-msg').hide();
+
+  $('form').on('submit', function (event) {
+    event.preventDefault();
+
+    const tweetBox = $(this).children('#tweet-text');
+    const tweetBoxVal = tweetBox.val();
+    const data = $('.tweet-form').serialize()
+
+    const btn = $(this).children('div').children('div').children('.tweet-btn');
+
+    //create API request using AJAX
+    if (!tweetBoxVal) {
+      $(btn).prop('disabled', true);
+      $('#error-one').show(() => {
+        $('#error-one').slideDown()
+      });
+    }
+    if (tweetBoxVal.length > 140) {
+      $(btn).prop('disabled', true);
+      $('#error-two').show(() => {
+        $('#error-two').slideDown()
+      });
+    } else {
+      $.ajax("/tweets", { method: 'POST', data: data })
+        .then((result) => {
+          console.log('success', result)
+          loadedTweets()
+        })
+    }
+  })
 });
+

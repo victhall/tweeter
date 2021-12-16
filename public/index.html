@@ -41,6 +41,9 @@
 
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
+
+  <!-- Timeago -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"></script>
 </head>
 
 <body>
@@ -68,7 +71,7 @@
 
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
-      <form action="/tweets" method="POST" class="tweet-form">
+      <form class="tweet-form">
         <input name="text" id="tweet-text" placeholder="What are you humming about?"></input>
         <div>
           <div class="submit-counter">
@@ -77,31 +80,39 @@
           </div>
         </div>
       </form>
+      <div>
+        <p id='error-one' class='error-msg'>Error: Tweet cannot be empty.</p>
+      </div>
+      <div>
+        <p id='error-two' class='error-msg'>Error: Tweet cannot exceed 140 characters.</p>
+      </div>
+
+
     </section>
 
     <section class="tweet-container">
-    <article>
+      <article>
 
-      <header class="tweet-header">
-        <div class="img-name">
-          <img src="/images/girl.png" alt="" class="user-img">
-          <span>Victoria</span>
+        <header class="tweet-header">
+          <div class="img-name">
+            <img src="/images/girl.png" alt="" class="user-img">
+            <span>Victoria</span>
+          </div>
+          <span class="username">@Fishsoup69</span>
+        </header>
+        <div class="tweet-body">
+          <span class="tweet-p">Just setting up my tweeter</span>
         </div>
-        <span class="username">@Fishsoup69</span>
-      </header>
-      <div class="tweet-body">
-        <span class="tweet-p">Just setting up my tweeter</span>
-      </div>
-      <footer class="tweet-footer">
-        <time datetime="2021-12-12T17:50:21.000Z">10 days ago</time>
-        <span class="icons">
-        <i class="fas fa-flag"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="fas fa-heart"></i>
-      </span>
-      </footer>
-    </article>
-  </section>
+        <footer class="tweet-footer">
+          <time datetime="2021-12-12T17:50:21.000Z">10 days ago</time>
+          <span class="icons">
+            <i class="fas fa-flag"></i>
+            <i class="fas fa-retweet"></i>
+            <i class="fas fa-heart"></i>
+          </span>
+        </footer>
+      </article>
+    </section>
 
   </main>
   <script src="./scripts/composer-char-counter.js"></script>

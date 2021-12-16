@@ -75,3 +75,9 @@ color: #49569b;
 .fa-heart:hover {
   color: #c79d3b;
 }
+
+.error-msg{
+  color: red;
+  padding: 5px;
+  border: 0.5px solid red;
+}
