@@ -68,8 +68,8 @@ $(document).ready(function () {
 
     const tweetBox = $(this).children('#tweet-text');
     const tweetBoxVal = tweetBox.val();
-    const data = $('.tweet-form').serialize()
-
+    const data = $('.tweet-form').serialize();
+    const charCount = $(this).children('div').children('div').children('.counter');
     const btn = $(this).children('div').children('div').children('.tweet-btn');
 
     //create API request using AJAX
@@ -87,10 +87,12 @@ $(document).ready(function () {
     } else {
       $.ajax("/tweets", { method: 'POST', data: data })
         .then((result) => {
-          console.log('success', result)
           loadedTweets()
+          $(tweetBox).val('')
+          $(charCount).val('140')
         })
     }
   })
+  loadedTweets();
 });
 
