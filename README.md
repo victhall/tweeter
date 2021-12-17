@@ -14,6 +14,12 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Final Product
 
+!["Desktop View"](https://github.com/victhall/tweeter/blob/master/docs/Desktop.png)
+
+!["Mobile View"](https://github.com/victhall/tweeter/blob/master/docs/Mobile.png)
+
+
+
 ## Dependencies
 
 - Express
