@@ -6,13 +6,14 @@
 
 const data = [];
 
-const escape = function (str) {
+const escape = (str) => {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
-const createTweetElement = function (tweeterData) {
+//Helper functions
+const createTweetElement = (tweeterData) => {
   const $tweet = $('<article>').addClass('tweet');
   let name = tweeterData.user.name;
   let avatar = tweeterData.user.avatars;
@@ -43,56 +44,76 @@ const createTweetElement = function (tweeterData) {
   return newTweet;
 };
 
-const renderTweets = function (tweets) {
+const renderTweets = (tweets) => {
   for (let element of tweets) {
     const postTweets = createTweetElement(element);
     $('.tweet-container').prepend(postTweets);
   }
 };
 
-
-function loadedTweets() {
+const loadedTweets = () => {
   $.ajax("/tweets", { method: 'GET' })
     .then(arrayOfTweets => {
       renderTweets(arrayOfTweets)
     })
 }
 
-
-
+//ensures DOM is ready for JavaScript code to execute
 $(document).ready(function () {
+  //hide html error messages when loading page
   $('.error-msg').hide();
-
+  //catch submit form
   $('form').on('submit', function (event) {
+    //prevents form submission
     event.preventDefault();
-
+    //gets tweet value and counter
     const tweetBox = $(this).children('#tweet-text');
     const tweetBoxVal = tweetBox.val();
-    const data = $('.tweet-form').serialize();
     const charCount = $(this).children('div').children('div').children('.counter');
-    const btn = $(this).children('div').children('div').children('.tweet-btn');
+    //creates text string from form input
+    const data = $('.tweet-form').serialize();
 
-    //create API request using AJAX
+    //conditionals
+    //if no tweet submitted, show error msg
     if (!tweetBoxVal) {
-      $(btn).prop('disabled', true);
       $('#error-one').show(() => {
-        $('#error-one').slideDown()
+        $('#error-one').slideDown(1000);
       });
+      $.ajax({ url: '/tweets', method: 'POST' })
+        .done((results) => { })
+        .fail();
     }
+    //if tweet submitted over 140 chars, show error msg
     if (tweetBoxVal.length > 140) {
-      $(btn).prop('disabled', true);
       $('#error-two').show(() => {
-        $('#error-two').slideDown()
+        $('#error-two').slideDown(1000);
       });
+      $.ajax({ url: '/tweets', method: 'POST' })
+        .done((results) => { })
+        .fail();
     } else {
-      $.ajax("/tweets", { method: 'POST', data: data })
-        .then((result) => {
-          loadedTweets()
-          $(tweetBox).val('')
-          $(charCount).val('140')
+      //creates api request using ajax
+      $.ajax({ url: '/tweets', method: 'POST', data: data })
+        .done((results) => {
+          loadedtweets();
+          $(tweetBox).val('');
+          $(charCount).val('140');
+          $('.error-msg').hide();
         })
+        .fail((error) => console.log(error))
+        .always(() => console.log('request to server done'));
     }
-  })
-  loadedTweets();
-});
-
+  });
+  //shows previous tweets
+  const loadedtweets = function () {
+    $.ajax({ url: '/tweets', method: 'GET' })
+      .done((results) => {
+        //empties tweet container
+        $('.tweet-container').empty();
+        renderTweets(results);
+      })
+      .fail((error) => console.log(error))
+      .always(() => console.log('request to server done'));
+  }
+  loadedtweets();
+})
